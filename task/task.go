@@ -2,13 +2,12 @@ package task
 
 import "context"
 
-// Context in the task input to run a task
-type Context struct {
-	Ctx         context.Context
+// Env represents the task execution environment
+type Env struct {
 	WorkdingDir string
 }
 
 // Task represents a build task that can be executed at various stages of a build
 type Task interface {
-	Execute(ctx *Context) error
+	Execute(ctx context.Context, env *Env) error
 }

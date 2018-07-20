@@ -37,18 +37,17 @@ func main() {
 	}
 
 	ctx := context.Background()
-	taskCtx := &task.Context{
-		Ctx:         ctx,
+	env := &task.Env{
 		WorkdingDir: workingDir,
 	}
 
-	for i, t := range breakfastFile.Tasks {
+	for i, t := range breakfastFile.BeforeBuild {
 		output := filepath.Join(outputDir, fmt.Sprintf("%d.so", i))
 		task, err := task.NewPackageBuilder(t.Package, t.Task).Build(t.Params, output)
 		if err != nil {
 			errLog.Fatalf("Error getting task for %s: %+v", t.Package, err)
 		}
 
-		task.Execute(taskCtx)
+		task.Execute(ctx, env)
 	}
 }

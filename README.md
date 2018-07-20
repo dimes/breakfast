@@ -7,15 +7,14 @@ Breakfast is a super simple toolkit for Go builds
 Breakfast executes tasks in order to complete a build. The interface for task is
 
 ```
-// Context in the task input to run a task
-type Context struct {
-	Ctx         context.Context
+// Env represents the task execution environment
+type Env struct {
 	WorkdingDir string
 }
 
 // Task represents a build task that can be executed at various stages of a build
 type Task interface {
-	Execute(ctx *Context) error
+	Execute(ctx context.Context, env *Env) error
 }
 ```
 
@@ -26,7 +25,7 @@ type GreetingTask struct {
 	Greeting string `yaml:"greeting"`
 }
 
-func (g *GreetingTask) Execute(ctx *task.Context) error {
+func (g *GreetingTask) Execute(ctx context.Context, env *task.Env) error {
 	fmt.Println("Hello from " + g.Greeting)
 }
 ```
