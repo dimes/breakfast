@@ -33,11 +33,13 @@ func (g *GreetingTask) Execute(ctx *task.Context) error {
 
 You configure Breakfast with a YAML file
 
+```
 before_build:
   - package: github.com/my/greeting/task
     task: GreetingTask
     params:
       greeting: Breakfast
+```
 
 Execute builds using the CLI
 
