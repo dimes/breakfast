@@ -27,7 +27,7 @@ type GreetingTask struct {
 }
 
 func (g *GreetingTask) Execute(ctx *task.Context) error {
-	fmt.Println("Hello from " + t.Greeting)
+	fmt.Println("Hello from " + g.Greeting)
 }
 ```
 
