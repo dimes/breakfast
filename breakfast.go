@@ -15,6 +15,11 @@ const (
 
 // File represents the entire breakfast YAML file
 type File struct {
+	Tasks *Tasks `yaml:"tasks,omitempty"`
+}
+
+// Tasks represent the different lifecycle hooks tasks can be executed against
+type Tasks struct {
 	BeforeBuild []*TaskDeclaration `yaml:"before_build,omitempty"`
 }
 
